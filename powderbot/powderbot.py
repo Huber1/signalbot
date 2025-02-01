@@ -13,7 +13,7 @@ Powderbot nutzung:
     map: Karte mit Schneefall der nächsten 24h
     daily [on|off]: Täglicher Schneebericht
     alert: [on|off]: Meldung bei viel Schneefall
-"""
+""".strip("\n")
 
 
 class PowderBot(Command):
@@ -50,7 +50,7 @@ class PowderBot(Command):
             alert: {"✅" if self.config.alert else "❌"}
             
             id: {self.context.message.recipient()}
-        """).strip()
+        """).strip("\n")
 
         await self.context.send(text)
 

@@ -31,4 +31,6 @@ if __name__ == "__main__":
     })
     bot.register(HandleMessage())
     bot.register(PowderBot())
+    print("Starting Bot")
     bot.start()
+    print("Bot Started")

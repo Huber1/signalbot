@@ -3,7 +3,6 @@ import os
 
 from signalbot import SignalBot, Command, Context, triggered
 
-from persistence_service import PersistenceService
 from powderbot.powderbot import PowderBot
 
 logger = logging.getLogger(__name__)

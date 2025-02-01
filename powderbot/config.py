@@ -1,3 +1,5 @@
+import re
+
 from persistence_service import persistence
 
 
@@ -9,7 +11,7 @@ class ChatConfiguration:
 
     def __init__(self, id: str):
         self.id = id
-        config: dict = persistence.retrieve(f"powderbot/{id}")
+        config: dict = persistence.retrieve(f"powderbot/{self.clean_id()}")
         self.active, self.daily, self.alert = config
 
     def store(self):
@@ -19,4 +21,7 @@ class ChatConfiguration:
             "daily": self.daily,
             "alert": self.alert,
         }
-        persistence.store(f"powderbot/{id}", config)
+        persistence.store(f"powderbot/{self.clean_id()}", config)
+
+    def clean_id(self):
+        return re.sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]=", "-", self.id)

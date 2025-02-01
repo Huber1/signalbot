@@ -18,7 +18,7 @@ class PowderBot(Command):
     context: Context = None
     config: ChatConfiguration = None
 
-    @regex_triggered(r"^\!powder(bot)?")
+    @regex_triggered(r"^\!powderbot")
     async def handle(self, c: Context):
         self.context = c
         self.config = ChatConfiguration(self.context.message.recipient())

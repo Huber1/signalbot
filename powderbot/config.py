@@ -1,3 +1,4 @@
+import os
 import re
 
 from persistence_service import persistence
@@ -11,6 +12,13 @@ class ChatConfiguration:
 
     def __init__(self, id: str):
         self.id = id
+        filename = f"powderbot/{self.clean_id()}"
+        dirname = os.path.dirname(filename)
+
+        if not os.path.exists(filename):
+            os.makedirs(dirname, exist_ok=True)
+            return
+
         config: dict = persistence.retrieve(f"powderbot/{self.clean_id()}")
         self.active, self.daily, self.alert = config
 

@@ -6,7 +6,6 @@ from os.path import exists
 
 class ChatConfiguration:
     id: str
-    active: bool = False
     daily: bool = True
     alert: bool = False
 
@@ -19,14 +18,12 @@ class ChatConfiguration:
 
         with open(self.filename(), "r") as file:
             config = json.loads(file.read())
-            self.active = config["active"]
             self.daily = config["daily"]
             self.alert = config["alert"]
 
     def store(self):
         config = {
             "id": self.id,
-            "active": self.active,
             "daily": self.daily,
             "alert": self.alert,
         }

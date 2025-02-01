@@ -11,6 +11,8 @@ Powderbot nutzung:
     status: display current status and configuration
     [resort]: Schneebericht von [resort]
     map: Karte mit Schneefall der nächsten 24h
+    daily [on|off]: Täglicher Schneebericht
+    alert: [on|off]: Meldung bei viel Schneefall
 """
 
 
@@ -34,10 +36,10 @@ class PowderBot(Command):
         match command.lower():
             case "status":
                 await self.status()
-            case "activate":
-                await self.activate()
-            case "deactivate":
-                await self.deactivate()
+            case "daily":
+                await self.daily(arguments[1:])
+            case "alert":
+                await self.alert(arguments[1:])
 
         await c.send("POWDER!")
 
@@ -49,14 +51,40 @@ class PowderBot(Command):
             alert: {"✅" if self.config.alert else "❌"}
             
             id: {self.context.message.recipient()}
-        """)
+        """).strip()
 
         await self.context.send(text)
 
-    async def activate(self):
-        self.config.active = True
-        self.config.store()
+    async def daily(self, args: list[str]):
+        if len(args) == 0:
+            await self.context.send(help_text)
+            return
 
-    async def deactivate(self):
-        self.config.active = False
-        self.config.store()
+        value = args[0]
+        if value.lower() == "on":
+            self.config.daily = True
+            self.config.store()
+            await self.context.send("Täglicher Bericht **eingeschaltet**", text_mode="styled")
+        elif value.lower() == "off":
+            self.config.daily = False
+            self.config.store()
+            await self.context.send("Täglicher Bericht **ausgeschaltet**", text_mode="styled")
+        else:
+            await self.context.send(help_text)
+
+    async def alert(self, args: list[str]):
+        if len(args) == 0:
+            await self.context.send(help_text)
+            return
+
+        value = args[0]
+        if value.lower() == "on":
+            self.config.alert = True
+            self.config.store()
+            await self.context.send("Schneewarnung **eingeschaltet**", text_mode="styled")
+        elif value.lower() == "off":
+            self.config.alert = False
+            self.config.store()
+            await self.context.send("Schneewarnung **ausgeschaltet**", text_mode="styled")
+        else:
+            await self.context.send(help_text)

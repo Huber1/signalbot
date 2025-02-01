@@ -5,6 +5,16 @@ from signalbot import SignalBot, Command, Context
 
 class PingCommand(Command):
     async def handle(self, c: Context):
+        print("MESSAGE INFO:")
+        print(f"GROUP: {c.message.group}")
+        print(f"SOURCE: {c.message.source}")
+        print(f"TEXT: {c.message.text}")
+        print(f"RAW_MESSAGE: {c.message.raw_message}")
+        print(f"SOURCE_NUMBER: {c.message.source_number}")
+        print(f"SOURCE_UUID: {c.message.source_uuid}")
+        print(f"IS_PRIVATE: {c.message.is_private()}")
+        print(f"IS_GROUP: {c.message.is_group()}")
+        print(f"RECIPIENT: {c.message.recipient()}")
         if c.message.text.lower() == "ping":
             await c.send("pong")
 

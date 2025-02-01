@@ -31,11 +31,13 @@ class PowderBot(Command):
 
         command = arguments[0]
 
-        match command:
+        match command.lower():
             case "status":
                 await self.status()
             case "activate":
                 await self.activate()
+            case "deactivate":
+                await self.deactivate()
 
         await c.send("POWDER!")
 
@@ -53,4 +55,8 @@ class PowderBot(Command):
 
     async def activate(self):
         self.config.active = True
+        self.config.store()
+
+    async def deactivate(self):
+        self.config.active = False
         self.config.store()

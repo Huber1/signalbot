@@ -32,4 +32,4 @@ class ChatConfiguration:
             file.write(json.dumps(config, indent=2))
 
     def filename(self):
-        return "/persistence/powderbot/" + re.sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F=]", "-", self.id) + ".json"
+        return "/persistent/powderbot/" + re.sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F=]", "-", self.id) + ".json"

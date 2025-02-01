@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from signalbot import Context, Command, triggered
+from signalbot import Context, Command, regex_triggered
 
 from persistence_service import persistence
 
@@ -15,7 +15,7 @@ Powderbot nutzung:
 
 
 class PowderBot(Command):
-    @triggered("!powderbot")
+    @regex_triggered(r"^\!powderbot")
     async def handle(self, c: Context):
         await c.send("POWDER!")
 

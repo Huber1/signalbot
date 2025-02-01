@@ -9,7 +9,6 @@ from powderbot.powderbot import PowderBot
 logger = logging.getLogger(__name__)
 
 class HandleMessage(Command):
-    @triggered
     async def handle(self, c: Context):
         print("MESSAGE INFO:")
         print(f"GROUP: {c.message.group}")

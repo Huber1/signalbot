@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install signalbot
+# current version is not available on pypi
+RUN apk add --no-cache git
+RUN pip install git+https://github.com/filipre/signalbot
 
 ENV PYTHONPATH="/app"
 

@@ -4,5 +4,5 @@ from command_handler import CommandHandler
 
 
 class PowderBotHandler(CommandHandler):
-    def handle(self, c: Context, arguments: list[str]):
-        c.reply("Hello There")
+    async def handle(self, c: Context, arguments: list[str]):
+        await c.reply("Hello There")

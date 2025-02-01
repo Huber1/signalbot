@@ -1,11 +1,13 @@
+import asyncio
 import logging
 import os
 
-from signalbot import SignalBot, Command, Context, triggered
+from signalbot import SignalBot, Command, Context
 
 from powderbot.powderbot import PowderBot
 
 logger = logging.getLogger(__name__)
+
 
 class HandleMessage(Command):
     async def handle(self, c: Context):
@@ -31,6 +33,5 @@ if __name__ == "__main__":
     })
     bot.register(HandleMessage())
     bot.register(PowderBot())
-    print("Starting Bot")
+
     bot.start()
-    print("Bot Started")

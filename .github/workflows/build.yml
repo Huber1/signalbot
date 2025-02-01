@@ -37,3 +37,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/huber1/signalbot:latest
+
+      - name: Trigger update
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.WEBHOOK_TOKEN }}" ${{ secrets.WEBHOOK_URL }}

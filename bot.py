@@ -3,7 +3,7 @@ import os
 from signalbot import SignalBot, Command, Context
 
 from command_handler import CommandHandler
-from powderbot import PowderBotHandler
+from powderbot.powderbot import PowderBotHandler
 
 
 class HandleMessage(Command):

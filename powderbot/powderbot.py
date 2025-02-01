@@ -5,4 +5,4 @@ from command_handler import CommandHandler
 
 class PowderBotHandler(CommandHandler):
     def handle(self, c: Context, arguments: list[str]):
-        pass
+        c.reply("Hello There")

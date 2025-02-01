@@ -1,5 +1,5 @@
 FROM python:3.13-alpine
 
-ADD bot.py .
+ADD . .
 RUN pip install signalbot
 CMD ["python", "-u", "bot.py"]

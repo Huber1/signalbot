@@ -46,7 +46,6 @@ class PowderBot(Command):
     async def status(self):
         text = dedent(f"""
             Powderbot status:
-            active: {"✅" if self.config.active else "❌"}
             daily: {"✅" if self.config.daily else "❌"}  
             alert: {"✅" if self.config.alert else "❌"}
             

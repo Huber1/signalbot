@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from signalbot import Context, Command, triggered
 
-from bot import persistence
+from persistence_service import persistence
 
 help_text = """
 Powderbot nutzung:

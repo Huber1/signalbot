@@ -7,8 +7,6 @@ from persistence_service import PersistenceService
 from powderbot.powderbot import PowderBot
 
 logger = logging.getLogger(__name__)
-persistence = PersistenceService("/persistent")
-
 
 class HandleMessage(Command):
     @triggered

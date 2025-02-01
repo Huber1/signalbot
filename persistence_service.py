@@ -1,7 +1,6 @@
 import os
 import pickle
 
-
 class PersistenceService:
     def __init__(self, path: str):
         self.path = path
@@ -15,3 +14,5 @@ class PersistenceService:
     def retrieve(self, key: str):
         with open(os.path.join(self.path, key), 'r') as file:
             return pickle.load(file)
+
+persistence = PersistenceService("/persistent")

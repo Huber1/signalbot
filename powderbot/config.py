@@ -6,7 +6,7 @@ from os.path import exists
 
 class ChatConfiguration:
     id: str
-    daily: bool = True
+    daily: bool = False
     alert: bool = False
 
     def __init__(self, id: str):

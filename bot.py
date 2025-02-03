@@ -27,10 +27,7 @@ class HandleMessage(Command):
 
 
 async def task(bot):
-    print("Started Task")
-    for i in range(20):
-        await asyncio.sleep(5)
-        await bot.send("11c515d6-b48c-42f7-9c91-97602dfe0a63", f"Message {i} from task")
+    await bot.send("11c515d6-b48c-42f7-9c91-97602dfe0a63", f"Bot started")
 
 
 if __name__ == "__main__":

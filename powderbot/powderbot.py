@@ -41,7 +41,6 @@ class PowderBot(Command):
             case "alert":
                 await self.alert(arguments[1:])
 
-        await c.send("POWDER!")
 
     async def status(self):
         text = dedent(f"""

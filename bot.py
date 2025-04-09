@@ -2,14 +2,17 @@ import asyncio
 import logging
 import os
 
-from signalbot import SignalBot, Command, Context
+from signalbot import SignalBot, Command, Context, regex_triggered
+from signalbot.storage import InMemoryStorage
 
-from powderbot.powderbot import PowderBot
+from musicbot.message_handler import MessageHandler
 
 logger = logging.getLogger(__name__)
 
 
-class HandleMessage(Command):
+class HandlePingMessage(Command):
+
+    @regex_triggered("ping")
     async def handle(self, c: Context):
         print("MESSAGE INFO:")
         print(f"GROUP: {c.message.group}")
@@ -22,8 +25,7 @@ class HandleMessage(Command):
         print(f"IS_GROUP: {c.message.is_group()}")
         print(f"RECIPIENT: {c.message.recipient()}")
 
-        if c.message.text.lower() == "ping":
-            await c.send("pong")
+        await c.send("pong")
 
 
 async def task(bot):
@@ -35,8 +37,10 @@ if __name__ == "__main__":
         "signal_service": os.environ["SIGNAL_SERVICE"],
         "phone_number": os.environ["PHONE_NUMBER"],
     })
-    bot.register(HandleMessage())
-    bot.register(PowderBot())
+    bot.storage = InMemoryStorage()
+
+    bot.register(HandlePingMessage())
+    bot.register(MessageHandler(bot))
 
     loop = asyncio.get_event_loop()
     loop.create_task(task(bot))
